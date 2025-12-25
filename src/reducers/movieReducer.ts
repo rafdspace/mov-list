@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { Movie } from "../types/movie";
 import { useFetchMovies } from "../repositories/useFetchMovies";
 
-interface MovieState {
+export interface MovieState {
   list: Movie[];
   page: number;
   loading: boolean;
@@ -17,7 +17,7 @@ const initialState: MovieState = {
   loading: false,
   hasMore: true,
   totalResults: 0,
-  keyword: "avatar",
+  keyword: "batman",
 };
 
 const movieSlice = createSlice({

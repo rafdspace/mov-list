@@ -12,10 +12,10 @@ const variantClasses: Record<NonNullable<BadgeProps["variant"]>, string> = {
 
 export function Badge({ children, variant = "default" }: BadgeProps) {
   return (
-    <span
+    <div
       className={`inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full border ${variantClasses[variant]}`}
     >
       {children}
-    </span>
+    </div>
   );
 }

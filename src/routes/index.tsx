@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import MovieDetail from "../pages/MovieDetail";
 import NotFound from "../pages/NotFound";
 
-const AppRoutes = () => {
+const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -13,4 +13,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+export default AppRouter;

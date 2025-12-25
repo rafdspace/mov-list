@@ -1,12 +1,12 @@
 import { BrowserRouter } from "react-router";
-import AppRoutes from "./routes/AppRoutes";
+import AppRouter from "./routes";
 import Header from "./components/Header";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <AppRoutes />
+      <AppRouter />
     </BrowserRouter>
   );
 };

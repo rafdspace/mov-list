@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { setKeyword } from "../reducers/movieReducer";
 import { useSearchMovies } from "../repositories/useSearchMovie";
-import { useOutsideClick } from "../lib/utils/handleClickOutside";
+import { useHandleClickOutside } from "../lib/hooks/useHandleClickOutside";
+import PlaceholderImg from "../assets/placeholder.jpg";
 
 export default function Search() {
   const [keywordLocal, setKeywordLocal] = useState("");
@@ -15,7 +16,7 @@ export default function Search() {
   const navigate = useNavigate();
   const { results, loading } = useSearchMovies(keywordLocal);
 
-  useOutsideClick(containerRef, () => setOpen(false));
+  useHandleClickOutside(containerRef, () => setOpen(false));
 
   const submitSearch = () => {
     if (!keywordLocal.trim() || !results.length || loading) return;
@@ -51,7 +52,6 @@ export default function Search() {
         <div
           className="
             z-50 bg-gray-800 border border-gray-600 shadow-xl overflow-y-auto
-
             fixed left-0 right-0 top-16 max-h-[70vh]
             md:absolute md:top-full md:left-0 md:right-0 md:mt-1 md:max-h-96
             md:rounded
@@ -69,9 +69,7 @@ export default function Search() {
                 className="flex items-center gap-3 p-4 md:p-2 hover:bg-gray-700 cursor-pointer"
               >
                 <img
-                  src={
-                    movie.Poster !== "N/A" ? movie.Poster : "/placeholder.png"
-                  }
+                  src={movie.Poster !== "N/A" ? movie.Poster : PlaceholderImg}
                   alt={movie.Title}
                   className="w-10 h-14 object-cover rounded"
                 />
@@ -87,7 +85,10 @@ export default function Search() {
           {!loading && results.length > 0 && (
             <div
               onClick={submitSearch}
-              className="p-4 md:p-3 text-sm text-blue-400 hover:bg-gray-700 cursor-pointer border-t border-gray-700"
+              className="
+                sticky bottom-0 bg-gray-800
+                p-4 md:p-3 text-sm text-blue-400 hover:bg-gray-700 
+                cursor-pointer border-t border-gray-700"
             >
               See all results for{" "}
               <span className="font-semibold">"{keywordLocal}"</span>

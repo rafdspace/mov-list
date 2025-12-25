@@ -21,8 +21,8 @@ export const useFetchMovieDetail = (id?: string) => {
       }
 
       setMovie(res.data);
-    } catch (err: any) {
-      setError(err.message || "Failed to fetch movie detail");
+    } catch (err: unknown) {
+      setError((err as Error).message || "Failed to fetch movie detail");
     } finally {
       setLoading(false);
     }

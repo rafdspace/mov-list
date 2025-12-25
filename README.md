@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# Stockbit React Dev Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a React development test application for Stockbit.  
+It uses **React**, **Redux**, **Axios**, **TypeScript**, **Vite**, **Vitest**, and **Tailwind CSS**, to demonstrate modern React patterns and best practices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** – Creates reusable UI components for the application.
+- **Redux** – Manages global application state in one place.
+- **Axios** – Handles HTTP requests to fetch data from APIs easily and reliably.
+- **TypeScript** – Adds type safety to catch errors before runtime.
+- **Vite** – Runs and builds the app fast during development and production.
+- **Vitest** – Runs fast unit tests for components and logic using Vite.
+- **Tailwind CSS** – Styles the UI using utility classes quickly and consistently.
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Make sure you have the following installed:
 
-## Expanding the ESLint configuration
+- **Node.js** v18 or higher (recommended for Vite & React 19)
+- **npm** (comes with Node.js) or **yarn / pnpm** if you prefer
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Running Development Locally
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. Install dependencies
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+From the project root, run:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Start development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The app will be served at:
+
+```
+http://localhost:5173
+```
+
+## Running Tests Locally
+
+Run all tests:
+
+```bash
+npm run test
+```
+
+Run tests with coverage:
+
+```bash
+npm run test:coverage
+```
+
+Run tests with interactive UI and coverage:
+
+```bash
+npm run test:ui
+```
+
+## Available Scripts
+
+| Script                  | Description                         |
+| ----------------------- | ----------------------------------- |
+| `npm run dev`           | Start Vite development server       |
+| `npm run build`         | Type-check and build for production |
+| `npm run preview`       | Preview production build locally    |
+| `npm run test`          | Run tests with Vitest               |
+| `npm run test:coverage` | Run tests with coverage report      |
+| `npm run test:ui`       | Run Vitest UI with coverage         |
+| `npm run lint`          | Run ESLint                          |

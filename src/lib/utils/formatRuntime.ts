@@ -1,7 +1,7 @@
 export function formatRuntime(runtime?: string) {
   if (!runtime || runtime === "N/A") return "N/A";
 
-  const minutes = parseInt(runtime.replace(" min", ""), 10);
+  const minutes = Number(runtime.replace(" min", ""));
   if (isNaN(minutes)) return runtime;
 
   const h = Math.floor(minutes / 60);

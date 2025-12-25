@@ -15,12 +15,14 @@ export default function MovieDetail() {
         Loading...
       </div>
     );
+
   if (error)
     return (
       <div className="p-6 text-red-500 w-screen h-screen flex items-center justify-center">
         {error}
       </div>
     );
+
   if (!movie) return null;
 
   return (
