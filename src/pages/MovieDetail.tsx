@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import MoviePoster from "../components/MoviePoster";
 import { Badge } from "../components/Badge";
 import { formatRuntime } from "../lib/utils/formatRuntime";
@@ -7,6 +7,7 @@ import { useFetchMovieDetail } from "../repositories/useFetchMovieDetail";
 
 export default function MovieDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { movie, loading, error } = useFetchMovieDetail(id);
 
   if (loading)
@@ -29,6 +30,13 @@ export default function MovieDetail() {
     <div className="w-screen">
       <div className="w-full max-w-310 m-auto border-x border-gray-100">
         <div className="p-4 md:p-6 flex flex-col gap-6">
+          <button
+            onClick={() => navigate("/")}
+            className="text-gray-500 hover:text-gray-700 self-start cursor-pointer font-semibold"
+          >
+            ← Back
+          </button>
+
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-bold m-0">{movie.Title}</h1>
             <p className="text-sm text-gray-500 capitalize">
@@ -36,6 +44,7 @@ export default function MovieDetail() {
               {movie.Rated}
             </p>
           </div>
+
           <div className="w-full bg-gray-900 flex items-center justify-center rounded-xl">
             <MoviePoster
               src={movie.Poster}

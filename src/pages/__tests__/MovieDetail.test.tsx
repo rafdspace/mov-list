@@ -1,11 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import MovieDetail from "../MovieDetail";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useFetchMovieDetail } from "../../repositories/useFetchMovieDetail";
 import type { Mock } from "vitest";
 
 vi.mock("react-router", () => ({
   useParams: vi.fn(),
+  useNavigate: vi.fn(),
 }));
 
 vi.mock("../../repositories/useFetchMovieDetail", () => ({
@@ -33,9 +34,12 @@ vi.mock("../../lib/utils/formatRuntime", () => ({
 }));
 
 describe("MovieDetail Page", () => {
+  const mockNavigate = vi.fn();
+
   beforeEach(() => {
     vi.clearAllMocks();
     (useParams as unknown as Mock).mockReturnValue({ id: "tt123" });
+    (useNavigate as unknown as Mock).mockReturnValue(mockNavigate);
   });
 
   it("renders loading state", () => {
@@ -94,6 +98,7 @@ describe("MovieDetail Page", () => {
       },
     });
     render(<MovieDetail />);
+
     expect(screen.getByText("Avatar")).toBeInTheDocument();
     expect(
       screen.getByText(/movie • 2009 • 2h 30m • PG-13/i)
@@ -107,5 +112,23 @@ describe("MovieDetail Page", () => {
     expect(screen.getByText("(1,200,000 votes)")).toBeInTheDocument();
     expect(screen.getByText("Director: James Cameron")).toBeInTheDocument();
     expect(screen.getByText("Box Office: $2.7B")).toBeInTheDocument();
+  });
+
+  it("calls navigate back when Back button is clicked", () => {
+    (useFetchMovieDetail as unknown as Mock).mockReturnValue({
+      loading: false,
+      error: null,
+      movie: {
+        Title: "Avatar",
+        Genre: "Action, Adventure",
+      },
+    });
+
+    render(<MovieDetail />);
+
+    const backButton = screen.getByRole("button", { name: /back/i });
+    fireEvent.click(backButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith("/");
   });
 });

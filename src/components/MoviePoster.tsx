@@ -48,7 +48,7 @@ export default function MoviePoster(props: MoviePosterProps) {
           >
             <div className="relative" onClick={(e) => e.stopPropagation()}>
               <button
-                className="absolute -top-3 -right-3 bg-white text-black rounded-full w-8 h-8 font-bold"
+                className="absolute -top-3 -right-3 bg-white text-black rounded-full w-8 h-8 font-bold cursor-pointer"
                 onClick={() => setOpen(false)}
               >
                 ✕
