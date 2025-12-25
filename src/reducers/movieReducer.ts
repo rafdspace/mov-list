@@ -8,6 +8,7 @@ interface MovieState {
   loading: boolean;
   hasMore: boolean;
   totalResults: number;
+  keyword: string;
 }
 
 const initialState: MovieState = {
@@ -16,12 +17,19 @@ const initialState: MovieState = {
   loading: false,
   hasMore: true,
   totalResults: 0,
+  keyword: "avatar",
 };
 
 const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
+    setKeyword: (state, action) => {
+      state.keyword = action.payload;
+      state.list = [];
+      state.page = 1;
+      state.hasMore = true;
+    },
     resetMovies: (state) => {
       state.list = [];
       state.page = 1;
@@ -53,5 +61,5 @@ const movieSlice = createSlice({
   },
 });
 
-export const { resetMovies } = movieSlice.actions;
+export const { resetMovies, setKeyword } = movieSlice.actions;
 export default movieSlice.reducer;

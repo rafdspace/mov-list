@@ -13,7 +13,7 @@ export default function MovieCard(props: MovieCardProps) {
   const { title, poster, id, type, year } = props;
 
   return (
-    <div className="bg-gray-800 text-white rounded-xl p-3 hover:scale-101 transition">
+    <div className="bg-gray-900 text-white rounded-xl p-3 hover:scale-101 transition">
       <MoviePoster src={poster} alt={title} />
 
       <Link to={`/movie/${id}`}>

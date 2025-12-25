@@ -26,7 +26,7 @@ export default function MovieDetail() {
   return (
     <div className="w-screen">
       <div className="w-full max-w-310 m-auto border-x border-gray-100">
-        <div className="p-6 flex flex-col gap-6">
+        <div className="p-4 md:p-6 flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-bold m-0">{movie.Title}</h1>
             <p className="text-sm text-gray-500 capitalize">

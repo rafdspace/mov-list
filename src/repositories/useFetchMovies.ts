@@ -3,10 +3,10 @@ import { omdbAPI } from "../lib/api";
 
 export const useFetchMovies = createAsyncThunk(
   "movies/useFetchMovies",
-  async (page: number) => {
+  async ({ keyword, page }: { keyword: string; page: number }) => {
     const res = await omdbAPI.get("", {
       params: {
-        s: "Batman",
+        s: keyword,
         page,
       },
     });
