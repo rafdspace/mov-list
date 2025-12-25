@@ -22,7 +22,18 @@ Make sure you have the following installed:
 
 ## Running Development Locally
 
-### 1. Install dependencies
+### 1. Install Node.js (if not installed):
+
+Download and install from [Node.js official site](https://nodejs.org/).
+
+Verify installation:
+
+```
+node -v
+npm -v
+```
+
+### 2. Install dependencies
 
 From the project root, run:
 
@@ -30,7 +41,7 @@ From the project root, run:
 npm install
 ```
 
-### 2. Start development server
+### 3. Start development server
 
 ```bash
 npm run dev
